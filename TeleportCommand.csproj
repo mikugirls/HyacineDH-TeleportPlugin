@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>TeleportPlugin</AssemblyName>
+    <Description>A multi-functional teleport plugin for HyacineDH-Core, providing absolute, relative, and position-checking commands.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Common">
+      <HintPath>libs\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="GameServer">
+      <HintPath>libs\GameServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HyacineCoreServer">
+      <HintPath>libs\HyacineCoreServer.dll</HintPath>
+    </Reference>
+    <Reference Include="KcpSharp">
+      <HintPath>libs\KcpSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Proto">
+      <HintPath>libs\Proto.dll</HintPath>
+    </Reference>
+    <Reference Include="WebServer">
+      <HintPath>libs\WebServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
