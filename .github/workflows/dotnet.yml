@@ -6,6 +6,17 @@ permissions:
 
 on:
   workflow_dispatch:
+    inputs:
+      publish:
+        description: '是否发布Release'
+        required: true
+        type: boolean
+        default: false
+      version:
+        description: '输入版本号'
+        required: false
+        type: string
+        default: '1.0'
 
 jobs:
   build:
@@ -19,7 +30,7 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore TeleportCommand.csproj
 
     - name: Build
       run: dotnet build TeleportCommand.csproj --no-restore
@@ -29,3 +40,15 @@ jobs:
       with:
         name: TeleportPlugin
         path: bin/Debug/net9.0/TeleportPlugin.dll
+
+    - name: Upload Release
+      if: github.event.inputs.publish == 'true'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ github.event.inputs.version }}
+        name: Release ${{ github.event.inputs.version }}
+        draft: false
+        prerelease: false
+        files: bin/Debug/net9.0/TeleportPlugin.dll
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
